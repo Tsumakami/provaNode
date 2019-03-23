@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Especialidade 1</th>
+      <th scope="col">Especialidade 2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <for (medico in data.medicos)>
+      <tr>
+        <th scope="row">${medico.nome}</th>
+        <td>${medico.especialidade}</td>
+        <td>${medico.enfase}</td>
+      </tr>
+    </for>
+  </tbody>
+</table>

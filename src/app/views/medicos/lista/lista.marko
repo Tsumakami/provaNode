@@ -1,4 +1,10 @@
-<table class="table">
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/estatico/css/bootstrap.css" />
+</head>
+<body>
+<h1>Lista de Médicos</h1>
+<table class="table" id="medico">
   <thead>
     <tr>
       <th scope="col">Nome</th>
@@ -8,10 +14,16 @@
   </thead>
   <tbody>
     <for (medico in data.medicos)>
-      <tr>
+      <tr id="medico_${medico.id}">
         <th scope="row">${medico.nome}</th>
         <td>${medico.especialidade}</td>
+        <td><a href="#">Editar</a></td>
+        <td><a href="#" data-ref="${medico.id}" data-type="remocao">Excluir</a></td>
       </tr>
     </for>
   </tbody>
 </table>
+<script src="/estatico/js/remove-medico.js">
+</script>
+</body>
+</html>

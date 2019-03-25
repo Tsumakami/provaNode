@@ -1,0 +1,101 @@
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cadastro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./../../../public/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="./../../../public/css/bootstrap.css" />
+</head>
+<body>
+
+
+    <h1>cadastro de Médicos</h1>
+    <div class="container">
+        <form action='/medicos' method='post'>
+            <div class="row">
+                <a href="/listagem">Voltar a listagem</a>
+            </div>
+            <div class="row">
+                <h3>Dados pessoais</h3>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="nome">Nome</label>
+                    <input type="text" class="form-control" name="nome" >
+                </div>
+                <div class="col-md-4">
+                    <label for="crm">CRM</label>
+                    <input type="text" class="form-control" name="crm" >
+                </div>
+                <div class="col-md-4">
+                    <label for="data">Data de Nascimento</label>
+                    <input type="date" class="form-control" name="data" >
+                </div>
+            </div>
+            <div id="contato">
+                <div class="row">
+                    <h3>Dados para Contato</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="endereco">Endereco</label>
+                        <input type="text" class="form-control" name="endereco" >
+                    </div>
+                    <div class="col-md-4">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" class="form-control" name="telefone" >
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success" id="add-endereco">Adicionar outro endereco</button>
+            <div class="row">
+                    <h3>Especialidades e Patologias</h3>
+            </div>
+
+            <for (especialidade in data.especialidades) >
+
+              <div class="row">
+
+                  <div class="col-md-12 especialidade">
+                      <input type="checkbox" name='especialidades' value="${especialidade.id}" > ${especialidade.especialidade}
+                  </div>
+                  <for (enfase in especialidade.enfases)>
+                    <if(enfase.id != null)>
+                    <div style="margin-left=20px" class="col-md-10 patologia hidden">
+                        <input type="checkbox" name='enfase'  value="${enfase.id}" > ${enfase.nome}
+                    </div>
+                  </if>
+                 </for>
+              </div>
+            </for>
+              <!-- <for |enfase| in=enfases)>
+                <p>${enfase.enfase}</p>
+              </for > -->
+
+
+            <script id="template-novo-endereco" type="text/template">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="endereco">Endereco</label>
+                        <input type="text" class="form-control" name={{endereco-name}} >
+                    </div>
+                    <div class="col-md-4">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" class="form-control" name={{telefone-name}} >
+                    </div>
+                    <div class="col-md-3">
+                        <button type="button" class="btn btn-danger" id="remover-endereco">Deletar este dado para contato</button>
+                    </div>
+                </div>
+            </script>
+            <script src="js/main.js"></script>
+            <input type='submit' value='cadastrar'>
+        </form>
+    </div>
+
+</body>
+
+</html>

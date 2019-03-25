@@ -58,6 +58,7 @@ module.exports = (app) => {
 
         resp.marko(require('../views/medicos/form/form.marko'),
         {
+            medico: {},
             especialidades: vetor
         }
       );
@@ -75,6 +76,26 @@ module.exports = (app) => {
 
     )
     .catch(erro => console.log(erro));
+  });
+
+  app.get('/medicos/form/:id', function(req, resp){
+    const id = req.params.id;
+    const medicosDao = new MedicosDao(db);
+    const especialidadesDao = new EspecialidadesDao(db);
+    medicosDao.buscarMedicoPorId(id)
+      .then(
+        (medico) => {
+
+          console.log(medico);
+          resp.marko(require('../views/medicos/form/form.marko'),
+          {
+            medico: medico[0]
+          }
+        );
+
+        }
+      )
+      .catch(erro => console.log(erro));
   });
 
   app.delete("/medicos/:id", function(req, resp){

@@ -103,13 +103,13 @@ class MedicosDao{
 
   buscarMedicoPorId(id){
       return new Promise((resolve, reject) => {
-        let query_busca_medico = `select m.id, m.nome, date_format(m.data_nascimento, '%Y-%m-%d') as data_nascimento, c.endereco, c.telefone, esp.id as especialidade_id,esp.nome as especialidade, enf.id as enfase_id,enf.nome as enfase from medico m
-      join contato c on c.medico_id = m.id
-      join medico_especialidade me on me.medico_id = m.id
-      join especialidade esp on esp.id = me.especialidade_id
-      join medico_enfase menf on menf.medico_id = m.id
-      join enfase enf on enf.id = menf.enfase_id
-      where m.id = ` + id;
+        let query_busca_medico = `select m.id, m.nome, date_format(m.data_nascimento, '%d-%m-%Y') as data_nascimento, c.endereco, c.telefone, esp.id as especialidade_id,esp.nome as especialidade, enf.id as enfase_id,enf.nome as enfase from medico m
+          left join contato c on c.medico_id = m.id
+          left join medico_especialidade me on me.medico_id = m.id
+          left join especialidade esp on esp.id = me.especialidade_id
+          left join medico_enfase menf on menf.medico_id = m.id
+          left join enfase enf on enf.id = menf.enfase_id
+          where m.id = ` + id;
         this._db.query(query_busca_medico, (erro, resultado) => {
             if(erro) return reject(erro);
 

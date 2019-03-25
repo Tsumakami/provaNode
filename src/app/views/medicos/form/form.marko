@@ -22,17 +22,18 @@
                 <h3>Dados pessoais</h3>
             </div>
             <div class="row">
+              <input type="hidden" name="id" id="id" value="${data.medico.id}">
                 <div class="col-md-4">
                     <label for="nome">Nome</label>
-                    <input type="text" class="form-control" name="nome" >
+                    <input type="text" class="form-control" value="${data.medico.nome}" name="nome">
                 </div>
                 <div class="col-md-4">
                     <label for="crm">CRM</label>
-                    <input type="text" class="form-control" name="crm" >
+                    <input type="text" class="form-control" value="" name="crm" >
                 </div>
                 <div class="col-md-4">
                     <label for="data">Data de Nascimento</label>
-                    <input type="date" class="form-control" name="data" >
+                    <input type="date" class="form-control" value="${data.medico.data_nascimento}" name="data" >
                 </div>
             </div>
             <div id="contato">
@@ -42,11 +43,11 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="endereco">Endereco</label>
-                        <input type="text" class="form-control" name="endereco" >
+                        <input type="text" class="form-control" value="${data.medico.endereco}" name="endereco" >
                     </div>
                     <div class="col-md-4">
                         <label for="telefone">Telefone</label>
-                        <input type="tel" class="form-control" name="telefone" >
+                        <input type="tel" class="form-control" value="${data.medico.telefone}" name="telefone" >
                     </div>
                 </div>
             </div>

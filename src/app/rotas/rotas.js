@@ -71,11 +71,21 @@ module.exports = (app) => {
     const medicosDao = new MedicosDao(db);
     medicosDao.adiciona(req.body)
     .then(
-      setTimeout(function(){ resp.redirect("/listagem") }, 1000)
+      setTimeout(function(){ resp.redirect("/listagem") }, 500)
 
     )
     .catch(erro => console.log(erro));
   });
 
+  app.delete("/medicos/:id", function(req, resp){
+    const id = req.params.id;
+    const medicosDao = new MedicosDao(db);
+    medicosDao.remove(id)
+    .then(
+      () => resp.status(200).end()
+
+    )
+    .catch(erro => console.log(erro));
+  });
 
 }

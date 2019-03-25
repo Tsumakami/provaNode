@@ -18,7 +18,7 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
 function render(input, out, __component, component, state) {
   var data = input;
 
-  out.w("<html><head><meta charset=\"utf-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><title>Cadastro</title><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link rel=\"stylesheet\" type=\"text/css\" href=\"./../../../public/css/main.css\"><link rel=\"stylesheet\" type=\"text/css\" href=\"./../../../public/css/bootstrap.css\"></head><body>");
+  out.w("<html><head><meta charset=\"utf-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"><title>Cadastro</title><meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"><link rel=\"stylesheet\" type=\"text/css\" href=\"/estatico/css/main.css\"><link rel=\"stylesheet\" type=\"text/css\" href=\"/estatico/css/bootstrap.css\"></head><body>");
 
   component_globals_tag({}, out);
 
@@ -41,7 +41,7 @@ function render(input, out, __component, component, state) {
       var keyscope__45 = "[" + (((for__44++) + keyscope__40) + "]");
 
       if (enfase.id != null) {
-        out.w("<div style=\"margin-left=20px\" class=\"col-md-10 patologia hidden\"><input type=\"checkbox\" name=\"enfase\"" +
+        out.w("<div class=\"col-md-10 patologia hidden\"><input type=\"checkbox\" name=\"enfase\"" +
           marko_attr("value", "" + enfase.id) +
           "> " +
           marko_escapeXml(enfase.nome) +
@@ -52,7 +52,7 @@ function render(input, out, __component, component, state) {
     out.w("</div>");
   });
 
-  out.w("<script id=\"template-novo-endereco\" type=\"text/template\">\n                <div class=\"row\">\n                    <div class=\"col-md-4\">\n                        <label for=\"endereco\">Endereco</label>\n                        <input type=\"text\" class=\"form-control\" name={{endereco-name}} >\n                    </div>\n                    <div class=\"col-md-4\">\n                        <label for=\"telefone\">Telefone</label>\n                        <input type=\"tel\" class=\"form-control\" name={{telefone-name}} >\n                    </div>\n                    <div class=\"col-md-3\">\n                        <button type=\"button\" class=\"btn btn-danger\" id=\"remover-endereco\">Deletar este dado para contato</button>\n                    </div>\n                </div>\n            </script><script src=\"js/main.js\"></script><input type=\"submit\" value=\"cadastrar\"></form></div>");
+  out.w("<script id=\"template-novo-endereco\" type=\"text/template\">\n                <div class=\"row\">\n                    <div class=\"col-md-4\">\n                        <label for=\"endereco\">Endereco</label>\n                        <input type=\"text\" class=\"form-control\" name={{endereco-name}} >\n                    </div>\n                    <div class=\"col-md-4\">\n                        <label for=\"telefone\">Telefone</label>\n                        <input type=\"tel\" class=\"form-control\" name={{telefone-name}} >\n                    </div>\n                    <div class=\"col-md-3\">\n                        <button type=\"button\" class=\"btn btn-danger\" id=\"remover-endereco\">Deletar este dado para contato</button>\n                    </div>\n                </div>\n            </script><script src=\"/estatico/js/main.js\"></script><input type=\"submit\" value=\"cadastrar\"></form></div>");
 
   init_components_tag({}, out);
 

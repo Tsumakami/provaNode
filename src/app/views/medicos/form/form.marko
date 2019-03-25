@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cadastro</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="./../../../public/css/main.css" />
-    <link rel="stylesheet" type="text/css" href="./../../../public/css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="/estatico/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/estatico/css/bootstrap.css" />
 </head>
 <body>
 
@@ -64,7 +64,7 @@
                   </div>
                   <for (enfase in especialidade.enfases)>
                     <if(enfase.id != null)>
-                    <div style="margin-left=20px" class="col-md-10 patologia hidden">
+                    <div class="col-md-10 patologia hidden">
                         <input type="checkbox" name='enfase'  value="${enfase.id}" > ${enfase.nome}
                     </div>
                   </if>
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </script>
-            <script src="js/main.js"></script>
+            <script src="/estatico/js/main.js"></script>
             <input type='submit' value='cadastrar'>
         </form>
     </div>

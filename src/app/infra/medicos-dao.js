@@ -5,7 +5,7 @@ class MedicosDao{
 
   lista(){
     return new Promise((resolve, reject) => {
-      let query_listagem = "select m.nome as nome, esp.nome as especialidade from medico m"
+      let query_listagem = "select m.id, m.nome as nome, esp.nome as especialidade from medico m"
            + " left join medico_especialidade me on me.medico_id = m.id"
            + " left join especialidade esp on me.especialidade_id = esp.id";
 
@@ -88,22 +88,20 @@ class MedicosDao{
 
     });
   }
+  atualiza(medico){
+
+  }
+  remove(id){
+    return new Promise((resolve, reject) => {
+      this._db.query("delete from medico where id = "+21,(erro, resultados) => {
+        if(erro) return reject("Não foi possivel remover o medicos.")
+        return resolve(resultados)
+      });
+
+    });
+  }
 
 }
 
-// MedicoDAO.prototype.salva = function(medico, callback){
-//     this._connection.query('insert into medico set ?', medico, callback);
-// }
-// MedicoDAO.prototype.salvaEspecialidades = function(array, callback){
-//     this._connection.query('insert into medico_especialidade(medico_id, especialidade_id) VALUES ?', [array], callback);
-// }
-// MedicoDAO.prototype.salvaContato = function(medico_id, tel, endereco, callback){
-//     this._connection.query('insert into contato set ?', {medico_id: medico_id, endereco: endereco, telefone: tel}, callback);
-// }
-// MedicoDAO.prototype.salvaEnfases= function(array, callback){
-//     this._connection.query('insert into medico_enfase(medico_id, enfase_id) values ?', [array], callback);
-// }
-// MedicoDAO.prototype.deletar= function(medico_id, callback){
-//     this._connection.query('delete from medico where id = ?',[medico_id], callback);
-// }
+
 module.exports = MedicosDao;

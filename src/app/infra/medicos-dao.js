@@ -3,13 +3,12 @@ class MedicosDao{
       this._db = db;
   }
 
-  lista(callback){
+  lista(){
     return new Promise((resolve, reject) => {
-      let query_listagem = "select m.nome as nome, esp.nome as especialidade, enf.nome as enfase from medico m"
+      let query_listagem = "select m.nome as nome, esp.nome as especialidade from medico m"
            + " join medico_especialidade me on me.medico_id = m.id"
-           + " join especialidade esp on me.especialidade_id = esp.id"
-           + " join medico_enfase menf on menf.medico_id = m.id"
-           + " join enfase enf on enf.id = menf.enfase_id";
+           + " join especialidade esp on me.especialidade_id = esp.id";
+
       this._db.query(query_listagem,(erro, resultados) => {
         if(erro) return reject("Não foi possivel listar os medicos.")
         return resolve(resultados)
@@ -17,6 +16,16 @@ class MedicosDao{
 
     });
 
+  }
+
+  adiciona(){
+    return new Promise((resolve, reject) =>{
+
+
+
+
+      this._db.query();
+    });
   }
 
 }

@@ -1,8 +1,16 @@
-const express = require('express')
-const app = express();
+require('marko/node-require').install();
+require('marko/express');
 
-const rotas = require('../app/rotas/rotas.js')
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+const rotas = require('../app/rotas/rotas.js');
 rotas(app);
 
 
-module.exports = app
+module.exports = app;

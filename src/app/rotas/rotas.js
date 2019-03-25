@@ -55,10 +55,20 @@ module.exports = (app) => {
                     });
                 }
         }
-
+        obj_vazio = {
+          'id': null,
+          'nome': '',
+          'data_nascimento': null,
+          'endereco': '',
+          'telefone': '',
+          'especialidade_id': null,
+          'especialidade': '',
+          'enfase_id': null,
+          'enfase': ''
+        }
         resp.marko(require('../views/medicos/form/form.marko'),
         {
-            medico: {},
+            medico: obj_vazio,
             especialidades: vetor
         }
       );

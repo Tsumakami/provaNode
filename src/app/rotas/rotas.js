@@ -96,7 +96,7 @@ module.exports = (app) => {
       .then(
         (medico) => {
 
-          console.log(medico);
+          console.log(medico[0]);
           resp.marko(require('../views/medicos/form/form.marko'),
           {
             medico: medico[0]

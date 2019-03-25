@@ -65,13 +65,17 @@ module.exports = (app) => {
     })
       .catch(erro => console.log(erro));
   });
+
   app.post("/medicos", function(req, resp){
     console.log(req.body);
     const medicosDao = new MedicosDao(db);
-    // medicosDao.adiciona(req.body)
-    //   .then()
-    //   .catch(erro => console.log(erro));
-  })
+    medicosDao.adiciona(req.body)
+    .then(
+      setTimeout(function(){ resp.redirect("/listagem") }, 1000)
+
+    )
+    .catch(erro => console.log(erro));
+  });
 
 
 }

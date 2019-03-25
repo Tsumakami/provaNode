@@ -93,8 +93,8 @@ class MedicosDao{
   }
   remove(id){
     return new Promise((resolve, reject) => {
-      this._db.query("delete from medico where id = "+21,(erro, resultados) => {
-        if(erro) return reject("Não foi possivel remover o medicos.")
+      this._db.query("delete from medico where id = "+id,(erro, resultados) => {
+        if(erro) return reject("Não foi possivel deletar o médico.")
         return resolve(resultados)
       });
 

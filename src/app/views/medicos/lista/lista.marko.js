@@ -35,7 +35,9 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(medico.nome) +
       "</th><td>" +
       marko_escapeXml(medico.especialidade) +
-      "</td><td><a href=\"#\">Editar</a></td><td><a href=\"#\"" +
+      "</td><td><a" +
+      marko_attr("href", "/medicos/form/" + medico.id) +
+      ">Editar</a></td><td><a href=\"#\"" +
       marko_attr("data-ref", "" + medico.id) +
       " data-type=\"remocao\">Excluir</a></td></tr>");
   });

@@ -7,14 +7,15 @@
 <table class="table" id="medico">
   <thead>
     <tr>
+      <th scope="col">Id</th>
       <th scope="col">Nome</th>
       <th scope="col">Especialidade</th>
-
     </tr>
   </thead>
   <tbody>
     <for (medico in data.medicos)>
       <tr id="medico_${medico.id}">
+        <td>${medico.id}</td>
         <th scope="row">${medico.nome}</th>
         <td>${medico.especialidade}</td>
         <td><a href="/medicos/form/${medico.id}">Editar</a></td>

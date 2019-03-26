@@ -22,16 +22,18 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<h1>Lista de Médicos</h1><table class=\"table\" id=\"medico\"><thead><tr><th scope=\"col\">Nome</th><th scope=\"col\">Especialidade</th></tr></thead><tbody>");
+  out.w("<h1>Lista de Médicos</h1><table class=\"table\" id=\"medico\"><thead><tr><th scope=\"col\">Id</th><th scope=\"col\">Nome</th><th scope=\"col\">Especialidade</th></tr></thead><tbody>");
 
-  var for__11 = 0;
+  var for__12 = 0;
 
   marko_forEach(data.medicos, function(medico) {
-    var keyscope__12 = "[" + ((for__11++) + "]");
+    var keyscope__13 = "[" + ((for__12++) + "]");
 
     out.w("<tr" +
       marko_attr("id", "medico_" + medico.id) +
-      "><th scope=\"row\">" +
+      "><td>" +
+      marko_escapeXml(medico.id) +
+      "</td><th scope=\"row\">" +
       marko_escapeXml(medico.nome) +
       "</th><td>" +
       marko_escapeXml(medico.especialidade) +
@@ -46,7 +48,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "21");
+  await_reorderer_tag({}, out, __component, "23");
 
   out.w("</body></html>");
 }

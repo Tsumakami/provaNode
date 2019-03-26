@@ -88,22 +88,53 @@ class MedicosDao{
 
     });
   }
-  atualiza(medico){
+  atualiza(medico) {
+        return new Promise((resolve, reject) => {
+          this._db.query(`UPDATE medico SET nome = ?, data_nascimento = ? WHERE id = `+medico.id,[medico.nome, medico.data],
+            erro => {
+                if (erro) {
+                    console.log(erro);
+                    return reject('Não foi possível atualizar o medico!');
+                }
+            });
 
+            this._db.query("UPDATE contato SET endereco= ?, telefone =? WHERE medico_id = " + medico.id, [medico.endereco, medico.telefone],
+              erro => {
+                if (erro) {
+                    console.log(erro);
+                    return reject('Não foi possível atualizar o contato!');
+                }
+              }
+            );
+            resolve();
+        });
   }
   remove(id){
     return new Promise((resolve, reject) => {
-      this._db.query("delete from medico where id = "+id,(erro, resultados) => {
-        if(erro) return reject("Não foi possivel deletar o médico.")
-        return resolve(resultados)
-      });
+      this._db.query(" delete from medico_enfase where medico_id = "+id,(erro, resultados) => {
+        if(erro) return reject("Não foi possivel deletar a enfase.")
 
+      });
+      this._db.query(" delete from medico_especialidade where medico_id = "+id,(erro, resultados) => {
+        if(erro) return reject("Não foi possivel deletar a especialidade.")
+
+      });
+      this._db.query(" delete from contato where medico_id = "+id,(erro, resultados) => {
+        if(erro) return reject("Não foi possivel deletar o contato.")
+
+      });
+      this._db.query(" delete from medico where id = "+id,(erro, resultados) => {
+        if(erro) return reject("Não foi possivel deletar o nome.")
+
+      });
+      return resolve();
     });
+
   }
 
   buscarMedicoPorId(id){
       return new Promise((resolve, reject) => {
-        let query_busca_medico = `select m.id, m.nome, date_format(m.data_nascimento, '%d-%m-%Y') as data_nascimento, c.endereco, c.telefone, esp.id as especialidade_id,esp.nome as especialidade, enf.id as enfase_id,enf.nome as enfase from medico m
+        let query_busca_medico = `select m.id, m.nome, date_format(m.data_nascimento, '%Y-%m-%d') as data_nascimento, c.endereco, c.telefone, esp.id as especialidade_id,esp.nome as especialidade, enf.id as enfase_id,enf.nome as enfase from medico m
           left join contato c on c.medico_id = m.id
           left join medico_especialidade me on me.medico_id = m.id
           left join especialidade esp on esp.id = me.especialidade_id

@@ -18,62 +18,30 @@ module.exports = (app) => {
 
   app.get('/medicos/form', function(req, resp){
     const especialidadesDao = new EspecialidadesDao(db);
-    let vetor = [];
-    especialidadesDao.lista()
-      .then(especialidades => {
-            vetor.push({
-                'especialidade': especialidades[0].especialidade,
-                'id': especialidades[0].id,
-                'enfases':[
-                    {
-                        'nome': especialidades[0].enfase,
-                        'id': especialidades[0].enfase_id,
-                        'especialidade_id': especialidades[0].especialidade_id
-                    }
-                ]
-            });
+    especialidadesDao.listaEspecialidadeEEnfase()
+      .then(
+        especialidades => {
+          obj_vazio = {
+            'id': null,
+            'nome': '',
+            'data_nascimento': null,
+            'endereco': '',
+            'telefone': '',
+            'especialidade_id': null,
+            'especialidade': '',
+            'enfase_id': null,
+            'enfase': ''
+          };
+          console.log(especialidades);
+          resp.marko(require('../views/medicos/form/form.marko'),
+            {
+              medico:obj_vazio,
+              especialidades:especialidades
+            }
+          );
+        }
 
-
-        for(let i = 1; i < especialidades.length; i++){
-          if(vetor[vetor.length-1].id == especialidades[i].id){
-                    vetor[vetor.length-1].enfases.push({
-                        'nome': especialidades[i].enfase,
-                        'id': especialidades[i].enfase_id,
-                        'especialidade_id': especialidades[i].especialidade_id
-                    });
-                }else{
-                    vetor.push({
-                        'especialidade': especialidades[i].especialidade,
-                        'id': especialidades[i].id,
-                        'enfases':[
-                            {
-                                'nome': especialidades[i].enfase,
-                                'id': especialidades[i].enfase_id,
-                                'especialidade_id': especialidades[i].especialidade_id
-                            }
-                        ]
-                    });
-                }
-        }
-        obj_vazio = {
-          'id': null,
-          'nome': '',
-          'data_nascimento': null,
-          'endereco': '',
-          'telefone': '',
-          'especialidade_id': null,
-          'especialidade': '',
-          'enfase_id': null,
-          'enfase': ''
-        }
-        resp.marko(require('../views/medicos/form/form.marko'),
-        {
-            medico: obj_vazio,
-            especialidades: vetor
-        }
-      );
-        console.log(vetor);
-    })
+      )
       .catch(erro => console.log(erro));
   });
 
@@ -95,13 +63,9 @@ module.exports = (app) => {
     medicosDao.buscarMedicoPorId(id)
       .then(
         (medico) => {
-
-          console.log(medico[0]);
-          resp.marko(require('../views/medicos/form/form.marko'),
-          {
-            medico: medico[0]
-          }
-        );
+          resp.marko(require('../views/medicos/form/form.marko'),{
+            medico:medico[0]
+          });
 
         }
       )

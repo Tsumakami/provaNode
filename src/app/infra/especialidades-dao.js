@@ -26,5 +26,6 @@ class EspecialidadesDao{
     });
   }
 
+  
 }
 module.exports = EspecialidadesDao;

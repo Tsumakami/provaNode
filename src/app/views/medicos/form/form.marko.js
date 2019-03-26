@@ -9,9 +9,9 @@ var marko_template = module.exports = require("marko/src/html").t(__filename),
     marko_helpers = require("marko/src/runtime/html/helpers"),
     marko_loadTag = marko_helpers.t,
     component_globals_tag = marko_loadTag(require("marko/src/components/taglib/component-globals-tag")),
+    marko_escapeXml = marko_helpers.x,
     marko_attr = marko_helpers.a,
     marko_forEach = marko_helpers.f,
-    marko_escapeXml = marko_helpers.x,
     init_components_tag = marko_loadTag(require("marko/src/components/taglib/init-components-tag")),
     await_reorderer_tag = marko_loadTag(require("marko/src/taglibs/core/await/reorderer-renderer"));
 
@@ -22,9 +22,17 @@ function render(input, out, __component, component, state) {
 
   component_globals_tag({}, out);
 
-  out.w("<h1>cadastro de Médicos</h1><div class=\"container\"><form action=\"/medicos\" method=\"post\"><div class=\"row\"><a href=\"/listagem\">Voltar a listagem</a></div><div class=\"row\"><h3>Dados pessoais</h3></div><div class=\"row\"><input type=\"hidden\" name=\"id\" id=\"id\"" +
-    marko_attr("value", "" + data.medico.id) +
-    "><div class=\"col-md-4\"><label for=\"nome\">Nome</label><input type=\"text\" class=\"form-control\"" +
+  out.w("<h1>cadastro de Médicos</h1><div class=\"container\"><form action=\"/medicos\" method=\"post\"><div class=\"row\"><a href=\"/listagem\">Voltar a listagem</a></div><div class=\"row\"><h3>Dados pessoais</h3></div><p>" +
+    marko_escapeXml(data.medico.id != null) +
+    "</p>");
+
+  if (data.medico.id != null) {
+    out.w("<input type=\"hidden\" name=\"id\" id=\"id\"" +
+      marko_attr("value", "" + data.medico.id) +
+      "><input type=\"hidden\" name=\"_method\" value=\"PUT\">");
+  }
+
+  out.w("<div class=\"row\"><div class=\"col-md-4\"><label for=\"nome\">Nome</label><input type=\"text\" class=\"form-control\"" +
     marko_attr("value", "" + data.medico.nome) +
     " name=\"nome\"></div><div class=\"col-md-4\"><label for=\"crm\">CRM</label><input type=\"text\" class=\"form-control\" value=\"\" name=\"crm\"></div><div class=\"col-md-4\"><label for=\"data\">Data de Nascimento</label><input type=\"date\" class=\"form-control\"" +
     marko_attr("value", "" + data.medico.data_nascimento) +
@@ -34,10 +42,10 @@ function render(input, out, __component, component, state) {
     marko_attr("value", "" + data.medico.telefone) +
     " name=\"telefone\"></div></div></div><button type=\"button\" class=\"btn btn-success\" id=\"add-endereco\">Adicionar outro endereco</button><div class=\"row\"><h3>Especialidades e Patologias</h3></div>");
 
-  var for__40 = 0;
+  var for__42 = 0;
 
   marko_forEach(data.especialidades, function(especialidade) {
-    var keyscope__41 = "[" + ((for__40++) + "]");
+    var keyscope__43 = "[" + ((for__42++) + "]");
 
     out.w("<div class=\"row\"><div class=\"col-md-12 especialidade\"><input type=\"checkbox\" name=\"especialidades\"" +
       marko_attr("value", "" + especialidade.id) +
@@ -45,10 +53,10 @@ function render(input, out, __component, component, state) {
       marko_escapeXml(especialidade.especialidade) +
       "</div>");
 
-    var for__45 = 0;
+    var for__47 = 0;
 
     marko_forEach(especialidade.enfases, function(enfase) {
-      var keyscope__46 = "[" + (((for__45++) + keyscope__41) + "]");
+      var keyscope__48 = "[" + (((for__47++) + keyscope__43) + "]");
 
       if (enfase.id != null) {
         out.w("<div class=\"col-md-10 patologia hidden\"><input type=\"checkbox\" name=\"enfase\"" +
@@ -66,7 +74,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "52");
+  await_reorderer_tag({}, out, __component, "54");
 
   out.w("</body></html>");
 }

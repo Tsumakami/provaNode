@@ -119,4 +119,19 @@ module.exports = (app) => {
     .catch(erro => console.log(erro));
   });
 
+  app.put("/medicos", function(req, resp){
+    const medicosDao = new MedicosDao(db);
+    console.log(req.body);
+    medicosDao.atualiza(req.body)
+    .then(
+      setTimeout(function(){ resp.redirect("/listagem") }, 500)
+
+    )
+    .catch(erro => console.log(erro));
+  });
+
+  app.get("/login", function(req, resp){
+    resp.marko(require('../views/login/login.marko'))
+  });
+
 }

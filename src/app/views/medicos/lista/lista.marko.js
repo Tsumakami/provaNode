@@ -44,11 +44,11 @@ function render(input, out, __component, component, state) {
       " data-type=\"remocao\">Excluir</a></td></tr>");
   });
 
-  out.w("</tbody></table><script src=\"/estatico/js/remove-medico.js\">\n</script>");
+  out.w("</tbody></table><button type=\"button\" class=\"btn btn-primary\"><a style=\"color: white\" href=\"/medicos/form\">Novo Médico</a></button><script src=\"/estatico/js/remove-medico.js\">\n</script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "23");
+  await_reorderer_tag({}, out, __component, "25");
 
   out.w("</body></html>");
 }

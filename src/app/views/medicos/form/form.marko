@@ -21,7 +21,7 @@
             <div class="row">
                 <h3>Dados pessoais</h3>
             </div>
-              
+
               <if(data.medico.id != null)>
                 <input type="hidden" name="id" id="id" value="${data.medico.id}">
                 <input type="hidden" name="_method" value="PUT">
@@ -60,7 +60,7 @@
             <div class="row">
                     <h3>Especialidades e Patologias</h3>
             </div>
-
+            
             <for (especialidade in data.especialidades) >
 
               <div class="row">
